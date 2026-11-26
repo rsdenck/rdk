@@ -1,0 +1,16 @@
+{
+  "protocol": "rdk",
+  "spec_version": "1.0.0",
+  "message_id": "8c1f2d3e-4a5b-4c6d-8e7f-9a0b1c2d3e4f",
+  "type": "hello_ack",
+  "sent_at": "2026-11-25T00:00:01Z",
+  "sender": { "participant_id": "rdk_server_01" },
+  "target": { "participant_id": "rdk_client_01" },
+  "correlation_id": "3f6a1c2e-8b4d-4a1f-9c2e-7d5b0a1e3f40",
+  "payload": {
+    "server_id": "rdk_server_01",
+    "selected_version": "1.0.0",
+    "supported_versions": ["1.0.0"],
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,33 @@
+version: 1.0.0
+protocol: rdk
+operations:
+  - id: rdk.version.negotiate
+    version: 1.0.0
+    since: 1.0.0
+    status: active
+    message_type: command
+    description: Negocia a versao comum do protocolo entre participantes.
+  - id: rdk.capabilities.read
+    version: 1.0.0
+    since: 1.0.0
+    status: active
+    message_type: command
+    description: Le recursos declarados pelo participante destino.
+  - id: rdk.health.read
+    version: 1.0.0
+    since: 1.0.0
+    status: active
+    message_type: command
+    description: Le estado operacional basico do participante destino.
+  - id: rdk.message.send
+    version: 1.0.0
+    since: 1.0.0
+    status: active
+    message_type: command
+    description: Entrega mensagem de protocolo a participante ou canal autorizado.
+  - id: rdk.event.publish
+    version: 1.0.0
+    since: 1.0.0
+    status: active
+    message_type: command
+    description: Publica evento RDK em canal autorizado.

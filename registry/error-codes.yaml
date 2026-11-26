@@ -1,0 +1,58 @@
+version: 1.0.0
+protocol: rdk
+codes:
+  - code: RDK_E_INVALID_ENVELOPE
+    since: 1.0.0
+    status: active
+    retryable: false
+    description: Envelope ausente, malformado ou invalido para o tipo declarado.
+  - code: RDK_E_UNSUPPORTED_VERSION
+    since: 1.0.0
+    status: active
+    retryable: false
+    description: Nenhuma versao comum foi negociada ou a mensagem usa versao nao autorizada.
+  - code: RDK_E_UNAUTHORIZED
+    since: 1.0.0
+    status: active
+    retryable: false
+    description: Identidade do chamador nao foi reconhecida.
+  - code: RDK_E_FORBIDDEN
+    since: 1.0.0
+    status: active
+    retryable: false
+    description: Grant, escopo ou expiracao nao autorizam a operacao.
+  - code: RDK_E_NOT_FOUND
+    since: 1.0.0
+    status: active
+    retryable: false
+    description: Operacao, evento ou recurso nao existe neste catalogo.
+  - code: RDK_E_CONFLICT
+    since: 1.0.0
+    status: active
+    retryable: false
+    description: Estado atual impede a operacao solicitada.
+  - code: RDK_E_IDEMPOTENCY_CONFLICT
+    since: 1.0.0
+    status: active
+    retryable: false
+    description: Mesma chave de idempotencia com payload divergente.
+  - code: RDK_E_RATE_LIMITED
+    since: 1.0.0
+    status: active
+    retryable: true
+    description: Limite de requisicoes excedido.
+  - code: RDK_E_TIMEOUT
+    since: 1.0.0
+    status: active
+    retryable: true
+    description: Operacao excedeu o tempo limite declarado.
+  - code: RDK_E_DEPRECATED
+    since: 1.0.0
+    status: active
+    retryable: false
+    description: Artefato depreciado e nao aceito nesta versao.
+  - code: RDK_E_INTERNAL
+    since: 1.0.0
+    status: active
+    retryable: true
+    description: Falha interna sem exposicao de detalhes sensiveis.

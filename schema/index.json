@@ -1,0 +1,50 @@
+{
+  "protocol": "rdk",
+  "version": "1.0.0",
+  "major": 1,
+  "schema_draft": "https://json-schema.org/draft/2020-12/schema",
+  "schemas": [
+    {
+      "type": "envelope",
+      "file": "rdk-envelope.schema.json",
+      "id": "https://github.com/rsdenck/rdk/schema/v1/rdk-envelope.schema.json",
+      "status": "active"
+    },
+    {
+      "type": "hello",
+      "file": "hello.schema.json",
+      "id": "https://github.com/rsdenck/rdk/schema/v1/hello.schema.json",
+      "status": "active"
+    },
+    {
+      "type": "hello_ack",
+      "file": "hello_ack.schema.json",
+      "id": "https://github.com/rsdenck/rdk/schema/v1/hello_ack.schema.json",
+      "status": "active"
+    },
+    {
+      "type": "command",
+      "file": "command.schema.json",
+      "id": "https://github.com/rsdenck/rdk/schema/v1/command.schema.json",
+      "status": "active"
+    },
+    {
+      "type": "result",
+      "file": "result.schema.json",
+      "id": "https://github.com/rsdenck/rdk/schema/v1/result.schema.json",
+      "status": "active"
+    },
+    {
+      "type": "event",
+      "file": "event.schema.json",
+      "id": "https://github.com/rsdenck/rdk/schema/v1/event.schema.json",
+      "status": "active"
+    },
+    {
+      "type": "error",
+      "file": "error.schema.json",
+      "id": "https://github.com/rsdenck/rdk/schema/v1/error.schema.json",
+      "status": "active"
+    }
+  ]
+}

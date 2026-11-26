@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rsdenck/rdk/schema/v1/result.schema.json",
+  "title": "RDK result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol", "spec_version", "message_id", "type", "sent_at", "sender", "target", "correlation_id", "payload"],
+  "properties": {
+    "protocol": { "const": "rdk" },
+    "spec_version": { "$ref": "#/$defs/semver" },
+    "message_id": { "$ref": "#/$defs/uuid" },
+    "type": { "const": "result" },
+    "sent_at": { "$ref": "#/$defs/timestamp" },
+    "sender": { "$ref": "#/$defs/participant" },
+    "target": { "$ref": "#/$defs/participant" },
+    "correlation_id": { "$ref": "#/$defs/uuid" },
+    "trace_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "authorization": { "$ref": "#/$defs/authorization" },
+    "signature": { "$ref": "#/$defs/signature" },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "operation_version", "status"],
+      "properties": {
+        "operation": { "$ref": "#/$defs/operation" },
+        "operation_version": { "$ref": "#/$defs/semver" },
+        "status": { "enum": ["accepted", "rejected", "completed", "failed"] },
+        "data": { "type": "object" },
+        "error": { "$ref": "#/$defs/error_ref" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "completed" } } },
+          "then": { "required": ["data"], "not": { "required": ["error"] } }
+        },
+        {
+          "if": { "properties": { "status": { "const": "failed" } } },
+          "then": { "required": ["error"], "not": { "required": ["data"] } }
+        },
+        {
+          "if": { "properties": { "status": { "enum": ["accepted", "rejected"] } } },
+          "then": { "not": { "anyOf": [{ "required": ["data"] }, { "required": ["error"] }] } }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "semver": { "type": "string", "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-(?:alpha|beta|rc)\\.(0|[1-9]\\d*))?$" },
+    "uuid": { "type": "string", "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$" },
+    "timestamp": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z$" },
+    "operation": { "type": "string", "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*){1,3}$" },
+    "error_code": { "type": "string", "pattern": "^RDK_E_[A-Z0-9_]+$" },
+    "participant_id": { "type": "string", "pattern": "^[A-Za-z0-9_-]{1,128}$" },
+    "participant": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "participant_id": { "$ref": "#/$defs/participant_id" },
+        "channel": { "type": "string", "pattern": "^[A-Za-z0-9_.:/-]{1,256}$" }
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["grant_id", "scope"],
+      "properties": {
+        "grant_id": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "scope": { "$ref": "#/$defs/operation" },
+        "expires_at": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "key_id", "value"],
+      "properties": {
+        "algorithm": { "type": "string", "pattern": "^[A-Za-z0-9_.-]{1,64}$" },
+        "key_id": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "value": { "type": "string", "minLength": 1, "maxLength": 4096 }
+      }
+    },
+    "error_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "retryable"],
+      "properties": {
+        "code": { "$ref": "#/$defs/error_code" },
+        "message": { "type": "string", "minLength": 1, "maxLength": 512 },
+        "retryable": { "type": "boolean" }
+      }
+    }
+  }
+}

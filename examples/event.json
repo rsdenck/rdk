@@ -1,0 +1,16 @@
+{
+  "protocol": "rdk",
+  "spec_version": "1.0.0",
+  "message_id": "9f8e7d6c-5b4a-43c2-8d1e-0f2a3b4c5d6e",
+  "type": "event",
+  "sent_at": "2026-11-25T00:02:00Z",
+  "sender": { "participant_id": "rdk_server_01" },
+  "target": { "channel": "rdk/system" },
+  "payload": {
+    "event_type": "rdk.session.opened",
+    "event_version": "1.0.0",
+    "occurred_at": "2026-11-25T00:00:01Z",
+    "subject": { "type": "session", "id": "3f6a1c2e-8b4d-4a1f-9c2e-7d5b0a1e3f40" },
+    "data": { "selected_version": "1.0.0" }
+  }
+}

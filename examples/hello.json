@@ -1,0 +1,15 @@
+{
+  "protocol": "rdk",
+  "spec_version": "1.0.0",
+  "message_id": "3f6a1c2e-8b4d-4a1f-9c2e-7d5b0a1e3f40",
+  "type": "hello",
+  "sent_at": "2026-11-25T00:00:00Z",
+  "sender": { "participant_id": "rdk_client_01" },
+  "target": { "channel": "rdk/control" },
+  "payload": {
+    "client_id": "rdk_client_01",
+    "supported_versions": ["1.0.0"],
+    "min_supported": "1.0.0",
+    "capabilities": ["rdk.version.negotiate", "rdk.health.read"]
+  }
+}

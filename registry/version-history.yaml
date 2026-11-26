@@ -1,0 +1,7 @@
+protocol: rdk
+versions:
+  - version: 1.0.0
+    date: 2026-11-25
+    status: active
+    breaking: false
+    summary: Contrato inicial do protocolo RDK com envelopes, negociacao, catalogos, schemas e exemplos.
